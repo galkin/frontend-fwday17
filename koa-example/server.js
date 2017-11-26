@@ -3,6 +3,11 @@ const app = new Koa();
 const Router = require('koa-router');
 const bodyParser = require('koa-bodyparser');
 
+const {promisify} = require('util');
+const {readFile} = require('fs');
+
+const readFilePromised = promisify(readFile);
+
 const apiPrefix = '/api/v0';
 const apiRouter = new Router({prefix: apiPrefix});
 
@@ -11,7 +16,7 @@ let message = 'Hello world';
 app.use(bodyParser());
 
 app.on('error', (err, ctx) => {
-    logger.warn({err, ctx});
+    console.error({err, ctx});
 });
 
 app.use(
@@ -35,7 +40,8 @@ apiRouter
     .get('/', async ctx => {
         ctx.status = 200;
         ctx.type = 'application/json';
-        ctx.body = {message};
+        const m = await readFilePromised('/Users/galkin/Projects/frontend-fwday17/koa-example/1.txt');
+        ctx.body = {message: m.toString()};
     })
     .put('/', async ctx => {
         message = ctx.request.body.message || message;
