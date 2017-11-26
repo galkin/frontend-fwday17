@@ -1,0 +1,17 @@
+{
+  "name": "koa-example",
+  "version": "0.1.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "Nikita Galkin <nikita@galk.in> (http://galk.in)",
+  "license": "UNLICENSED",
+  "dependencies": {
+    "koa": "^2.4.1",
+    "koa-bodyparser": "^4.2.0",
+    "koa-router": "^7.3.0"
+  }
+}
